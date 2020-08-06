@@ -21,7 +21,7 @@
 
 $host = "localhost";
 $user = "www-data";
-$pass = "vleowemnxoyvq"; # secret
+$pass = ""; # secret
 $db   = "www-data";
 //$charset = "utf8mb4";
 
