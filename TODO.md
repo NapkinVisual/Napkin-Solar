@@ -21,3 +21,5 @@
 * PHP move_uploaded_file:
   * Target folder for the move_uploaded_file function must have owner www-data. <br />
     Ensure this by ``` $ sudo chown -R www-data [folder-path] ```
+* [Postgres DB create](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
+* [Postgres DB grant](https://stackoverflow.com/questions/23275656/postgresql-relation-doesnt-exist-error-when-granting-priviliges)
