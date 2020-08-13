@@ -25,28 +25,33 @@ window.addEventListener("load", function() {
   init();
 
 
-  //let exportMapData;
-
-
   /* MapBox token */
-  const MAPBOX_TOKEN = 'pk.eyJ1IjoiYW5kcmVhc2F0YWthbiIsImEiOiJjazlndzM1cmUwMnl5M21tZjQ3dXpzeHJnIn0.oE5zp040ZzJj5QgCDznweg';
+  const MAPBOX_TOKEN = "pk.eyJ1IjoiYW5kcmVhc2F0YWthbiIsImEiOiJjazlndzM1cmUwMnl5M21tZjQ3dXpzeHJnIn0.oE5zp040ZzJj5QgCDznweg";
+
+  /*
+    Potential parks:
+      Pidhorodnye Solar Park:   48.606888, 35.150520
+      Starokozache Solar Park:  46.466667, 30.733333
+      Perovo Solar Park:        44.900000, 33.933333
+      Okhotnykovo Solar Park:   45.238889, 33.592778
+  */
 
   /** STORE **/
   const reducers = (function createReducers(redux, keplerGl) {
     return redux.combineReducers({
       keplerGl: keplerGl.keplerGlReducer.initialState({
-        mapState: {
-          latitude: 60,
-          longitude: 9,
-          zoom: 5
+        mapState: { // norge – lat:60 lng:9 zoom:5
+          latitude: 48.606888,
+          longitude: 35.150520,
+          zoom: 15
         },
         mapStyle: {
-          styleType: 'light',
+          styleType: "satellite",
           threeDBuildingColor: [ 192, 192, 192 ]
         },
         uiState: {
           currentModal: null,
-          readOnly: true
+          //readOnly: true
         }
       })
     });
@@ -93,20 +98,20 @@ window.addEventListener("load", function() {
             height: calcHeight(window.innerHeight)
           });
         };
-        window.addEventListener('resize', handleResize);
-        return function() { window.removeEventListener('resize', handleResize); };
+        window.addEventListener("resize", handleResize);
+        return function() { window.removeEventListener("resize", handleResize); };
       }, []);
 
       return react.createElement(
-        'div',
-        { style: { /*position: 'absolute', left: 0,*/ width: '100%', height: '100%' } },
+        "div",
+        { style: { /*position: "absolute", left: 0,*/ width: "100%", height: "100%" } },
         react.createElement(keplerGl.KeplerGl, {
           mapboxApiAccessToken: mapboxToken,
-          id: 'map',
+          id: "map",
           width:  windowDimension.width,
           height: windowDimension.height,
-          appName: '',
-          appWebsite: 'https://napkingis.no'
+          appName: "",
+          appWebsite: "https://napkingis.no/"
         })
       );
     };
@@ -123,7 +128,7 @@ window.addEventListener("load", function() {
 
   /** Render **/
   (function render(react, reactDOM, app) {
-    reactDOM.render(app, document.getElementById('app'));
+    reactDOM.render(app, document.getElementById("app"));
   }(React, ReactDOM, app));
 
 
@@ -133,7 +138,7 @@ window.addEventListener("load", function() {
    */
   (function customize(keplerGl, store) {
     //store.dispatch(keplerGl.toggleSplitMap());
-    //window.exportMapData = function() { return KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map); };
+    //let exportMapData = function() { return KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map); };
 
     /*store.dispatch(keplerGl.addDataToMap({
       datasets: loadedData.datasets,

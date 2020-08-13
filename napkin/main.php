@@ -78,7 +78,15 @@
 	<link rel="stylesheet" href="css/view.css" />
 
 	<style type="text/css">
-		/**/
+		#app p {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		#app tr.row {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	</style>
 
 </head>
