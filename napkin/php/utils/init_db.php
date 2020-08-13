@@ -22,7 +22,7 @@
 $host = "localhost";
 $user = "www-data";
 $pass = ""; # secret
-$db   = "www-data";
+$db   = "solar";
 //$charset = "utf8mb4";
 
 $dsn = "pgsql:host=$host;dbname=$db;options='--client_encoding=UTF8'";

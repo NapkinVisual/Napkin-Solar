@@ -22,9 +22,10 @@
 
 BEGIN;
 
-INSERT INTO "User" (username, email, passwd)
+INSERT INTO "User" (type, username, email, passwd)
 VALUES
   (
+    'admin',
     'andreas',
     'andreas@napkingis.no',
     '240f2ec6918381f9e7393b18539f8a2c8bc60b3224004a37ee7057a62abc2efa'

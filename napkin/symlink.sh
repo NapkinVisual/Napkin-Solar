@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo ln -s ~/Dokumenter/napkin/Napkin-Visual/napkin /var/www/html
+sudo ln -s ~/Dokumenter/napkin/Napkin-Solar/napkin /var/www/html
