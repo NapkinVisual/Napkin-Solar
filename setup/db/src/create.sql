@@ -1,6 +1,6 @@
 /*©agpl*************************************************************************
 *                                                                              *
-* Napkin Visual – Visualisation platform for the Napkin platform               *
+* Napkin Solar – Napkin-Visual based analysis tool for the solar energy market *
 * Copyright (C) 2020  Napkin AS                                                *
 *                                                                              *
 * This program is free software: you can redistribute it and/or modify         *
@@ -63,21 +63,6 @@ CREATE TABLE IF NOT EXISTS "Log"(
 	timestamp timestamp DEFAULT NOW(),
 
 	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS "Stock"(
-	stockid uuid DEFAULT uuid_generate_v4(),
-	entityid uuid NOT NULL,
-	type varchar(15) NOT NULL,
-	name varchar(45) NOT NULL,
-	amount int DEFAULT 0,
-	last_ordered timestamp DEFAULT NOW(),
-
-	PRIMARY KEY (stockid),
-	FOREIGN KEY (entityid)
-		REFERENCES "Entity" (entityid)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
 );
 
 END;

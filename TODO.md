@@ -1,12 +1,6 @@
 ## TODO
-* Pages:
-  * Admin
-    * Import users
-* Global search on all pages
 * Add logging to all PHP scripts
 * Build new kepler.gl umd where it says *export* in side-panel header, instead of *share*
-
-##### REBUILD THE PROJECT USING [SYMFONY](https://symfony.com/doc/current/quick_tour/the_big_picture.html)
 
 
 #### Bugs

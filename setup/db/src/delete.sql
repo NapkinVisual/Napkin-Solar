@@ -1,6 +1,6 @@
 /*©agpl*************************************************************************
 *                                                                              *
-* Napkin Visual – Visualisation platform for the Napkin platform               *
+* Napkin Solar – Napkin-Visual based analysis tool for the solar energy market *
 * Copyright (C) 2020  Napkin AS                                                *
 *                                                                              *
 * This program is free software: you can redistribute it and/or modify         *
@@ -21,7 +21,6 @@
 BEGIN;
 
 DELETE FROM "Log";
-DELETE FROM "Stock";
 
 DELETE FROM "User_Entity";
 

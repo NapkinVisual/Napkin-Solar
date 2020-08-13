@@ -1,6 +1,6 @@
 /*©agpl*************************************************************************
 *                                                                              *
-* Napkin Visual – Visualisation platform for the Napkin platform               *
+* Napkin Solar – Napkin-Visual based analysis tool for the solar energy market *
 * Copyright (C) 2020  Napkin AS                                                *
 *                                                                              *
 * This program is free software: you can redistribute it and/or modify         *
@@ -51,15 +51,6 @@ VALUES
     'Entity',
     'create',
     'Create Entity – Added a new entity; main'
-  );
-
-INSERT INTO "Stock" (entityid, type, name, amount)
-VALUES
-  (
-    (SELECT entityid from "Entity" LIMIT 1),
-    'tools',
-    'Tool supply',
-    15
   );
 
 END;
