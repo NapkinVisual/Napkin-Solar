@@ -27,7 +27,6 @@
 
 	include "php/utils/init_db.php";
 	include_once "php/utils/getUser.php";
-	include_once "php/utils/searchLog.php";
 	include_once "php/utils/getAllLogs.php";
 
 	$uid = null;
@@ -228,7 +227,7 @@
 								<option value="delete">delete</option>
 							</select>
 
-							<button type="submit" class="btn btn-sm btn-outline-secondary mb-2">Search</button>
+							<button type="button" class="btn btn-sm btn-outline-secondary mb-2">Search</button>
 						</form>
 
 						<br />

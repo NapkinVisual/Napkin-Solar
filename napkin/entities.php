@@ -412,7 +412,7 @@
 							<input type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="createdFrom" id="createdFrom" placeholder="From" />
 							<input type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="createdTo" id="createdTo" placeholder="To" />
 
-							<button type="submit" class="btn btn-sm btn-outline-secondary mb-2">Search</button>
+							<button type="button" class="btn btn-sm btn-outline-secondary mb-2">Search</button>
 						</form>
 
 						<br />
