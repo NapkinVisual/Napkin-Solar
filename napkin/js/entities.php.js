@@ -33,34 +33,6 @@ window.addEventListener("load", function() {
     ev.preventDefault();
 
     $("#newEntityModal").modal("hide");
-
-    let name = $("#newEntityModal input#entityName").val(),
-        description = $("#newEntityModal textarea#entityDescription").val();
-
-    $("#loadingModal").modal("show");
-
-    $.ajax({
-      type: "POST",
-      url: "php/entity",
-      data: {
-        "op": "create",
-        "name": name,
-        "description": description,
-        "aoi": aoi
-      },
-      success: function(result, status, xhr) {
-        console.log(status);
-
-        setTimeout(function() {
-          $("#loadingModal").modal("hide");
-          window.location.reload();
-        }, 500);
-      },
-      error: function(xhr, status, error) {
-        console.log(xhr.status);
-        console.log(error);
-      }
-    });
   });
 
 
@@ -172,36 +144,6 @@ window.addEventListener("load", function() {
     ev.preventDefault();
 
     $("#shareEntityModal").modal("hide");
-
-    let btn = ev.originalEvent.submitter;
-
-    let entityid = $(this).attr("data-entityid"),
-        shareType = $(btn).attr("data-sharetype"),
-        shareId = $(btn).attr("data-shareid");
-
-    $("#loadingModal").modal("show");
-
-    $.ajax({
-      type: "POST",
-      url: "php/entity",
-      data: {
-        "op": "share",
-        "eid": entityid,
-        "shareId": shareId,
-        "shareType": shareType
-      },
-      success: function(result, status, xhr) {
-        console.log(status);
-
-        setTimeout(function() {
-          $("#loadingModal").modal("hide");
-        }, 500);
-      },
-      error: function(xhr, status, error) {
-        console.log(xhr.status);
-        console.log(error);
-      }
-    });
   });
 
 
@@ -234,35 +176,6 @@ window.addEventListener("load", function() {
     ev.preventDefault();
 
     $("#editEntityModal").modal("hide");
-
-    let entityid = $("#editEntityModal button#editEntity").attr("data-entityid"),
-        name = $("#editEntityModal input#entityName").val(),
-        description = $("#editEntityModal textarea#entityDescription").val();
-
-    $("#loadingModal").modal("show");
-
-    $.ajax({
-      type: "POST",
-      url: "php/entity",
-      data: {
-        "op": "update",
-        "eid": entityid,
-        "name": name,
-        "description": description
-      },
-      success: function(result, status, xhr) {
-        console.log(status);
-
-        setTimeout(function() {
-          $("#loadingModal").modal("hide");
-          window.location.reload();
-        }, 500);
-      },
-      error: function(xhr, status, error) {
-        console.log(xhr.status);
-        console.log(error);
-      }
-    });
   });
 
 
@@ -273,28 +186,5 @@ window.addEventListener("load", function() {
 
   $("#deleteEntityModal button#deleteEntity").click(function(ev) {
     let entityid = $(this).attr("data-entityid");
-
-    $("#loadingModal").modal("show");
-
-    $.ajax({
-      type: "POST",
-      url: "php/entity",
-      data: {
-        "op": "delete",
-        "eid": entityid
-      },
-      success: function(result, status, xhr) {
-        console.log(status);
-
-        setTimeout(function() {
-          $("#loadingModal").modal("hide");
-          window.location.reload();
-        }, 500);
-      },
-      error: function(xhr, status, error) {
-        console.log(xhr.status);
-        console.log(error);
-      }
-    });
   });
 });

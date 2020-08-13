@@ -20,22 +20,21 @@
 *****************************************************************************©*/
 
 include_once "getUser.php";
-include_once "getProjectOwner.php";
 
 
 /**
- * Checks if the user has entry in User_Project table
- * i.e. if project is shared with this user individually
+ * Checks if the user has entry in User_Entity table
+ * i.e. if entity is shared with this user individually
  *
  * @param uid userId
- * @param pid projectId
+ * @param eid entityId
  */
-function entityGetAccess($pdo, $uid, $pid) {
+function entityGetAccess($pdo, $uid, $eid) {
   $user = getUser($pdo, $uid);
   if($user['type'] == "admin") return true;
 
-  $stmt = $pdo->prepare("SELECT id FROM \"User_Project\" WHERE userid = ? AND projectid = ?");
-  $stmt->execute([$uid, $pid]);
+  $stmt = $pdo->prepare("SELECT id FROM \"User_Entity\" WHERE userid = ? AND entityid = ?");
+  $stmt->execute([$uid, $eid]);
   $num = $stmt->rowCount();
 
   if($num < 1) return false;
@@ -45,38 +44,23 @@ function entityGetAccess($pdo, $uid, $pid) {
 
 
 /**
- * Checks if the user is the owner of the project
+ * Checks if the user is the owner of the entity
  *
  * @param uid userId
- * @param pid projectId
+ * @param eid entityId
  */
-function entitySetAccess($pdo, $uid, $pid) {
+function entitySetAccess($pdo, $uid, $eid) {
   $user = getUser($pdo, $uid);
   if($user['type'] == "admin") return true;
 
-  $owner = getProjectOwner($pdo, $pid);
-  $isOwner = $uid == $owner['userid'];
-
-  return $isOwner;
-}
-
-
-
-/**
- * Checks if the user has read/write access to a datasource
- *
- * @param uid userId
- * @param did datasource id
- */
-function stockAccess($pdo, $uid, $did) {
-  $user = getUser($pdo, $uid);
-  if($user['type'] == "admin") return true;
-
-  $stmt = $pdo->prepare("SELECT id FROM \"Datasource\" WHERE ownerid = ? AND id = ?");
-  $stmt->execute([$uid, $did]);
+  $stmt = $pdo->prepare("SELECT userid FROM \"User_Entity\" WHERE entityid = ? AND status = 'owner'");
+  $stmt->execute([$uid, $eid]);
   $num = $stmt->rowCount();
 
-  if($num == 1) return true;
+  if($num != 1) throw new Exception("Corrupt data in \"User_Entity\"", 1);
 
-  return false;
+  $row = $stmt->fetch();
+  $isOwner = $uid == $row['userid'];
+
+  return $isOwner;
 }

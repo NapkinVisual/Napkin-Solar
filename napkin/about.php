@@ -132,7 +132,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="stock">
+							<a class="nav-link" href="#">
 								<span data-feather="box"></span>
 								Stock
 							</a>
@@ -143,7 +143,7 @@
 
         	<ul class="nav flex-column mb-2">
           	<li class="nav-item">
-            	<a class="nav-link" href="account">
+            	<a class="nav-link" href="#">
               	<span data-feather="user"></span>
               	Account
             	</a>
@@ -163,14 +163,14 @@
 							if($user['type'] == 'admin') {
 								echo "
 									<li class=\"nav-item\">
-										<a class=\"nav-link\" href=\"admin\">
+										<a class=\"nav-link\" href=\"#\">
 											<span data-feather=\"user-check\"></span>
 											Administration
 										</a>
 									</li>
 
 									<li class=\"nav-item\">
-			            	<a class=\"nav-link\" href=\"settings\">
+			            	<a class=\"nav-link\" href=\"#\">
 			              	<span data-feather=\"settings\"></span>
 			              	Settings
 			            	</a>

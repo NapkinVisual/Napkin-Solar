@@ -58,12 +58,12 @@ if($op == "user")
       U.*
     FROM
       \"User\" AS U LEFT JOIN
-      \"User_Project\" AS UP
-        ON U.userid = UP.userid
+      \"User_Entity\" AS UE
+        ON U.userid = UE.userid
     WHERE
       U.username LIKE ? AND
       U.userid != ? AND
-      UP.userid IS NULL"
+      UE.userid IS NULL"
   );
   $stmt->execute(["$term%", $uid]);
   $res = $stmt->fetchAll();

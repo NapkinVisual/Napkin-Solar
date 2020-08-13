@@ -132,7 +132,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="stock">
+							<a class="nav-link" href="#">
 								<span data-feather="box"></span>
 								Stock
 							</a>
@@ -143,7 +143,7 @@
 
         	<ul class="nav flex-column mb-2">
           	<li class="nav-item">
-            	<a class="nav-link" href="account">
+            	<a class="nav-link" href="#">
               	<span data-feather="user"></span>
               	Account
             	</a>
@@ -163,14 +163,14 @@
 							if($user['type'] == 'admin') {
 								echo "
 									<li class=\"nav-item\">
-										<a class=\"nav-link\" href=\"admin\">
+										<a class=\"nav-link\" href=\"#\">
 											<span data-feather=\"user-check\"></span>
 											Administration
 										</a>
 									</li>
 
 									<li class=\"nav-item\">
-			            	<a class=\"nav-link\" href=\"settings\">
+			            	<a class=\"nav-link\" href=\"#\">
 			              	<span data-feather=\"settings\"></span>
 			              	Settings
 			            	</a>
@@ -246,23 +246,7 @@
 								</thead>
 								<tbody>
 									<?php
-										$res = null;
-										$op = "";
-										if(isset($_GET['op'])) $op = $_GET['op'];
-
-										if($op == "search") {
-											$dateFrom = $_GET['dateFrom'];
-											$dateTo = $_GET['dateTo'];
-											if(isset($_GET['type'])) $type = $_GET['type'];
-
-											if(empty($_GET['dateFrom'])) $dateFrom = null;
-											if(empty($_GET['dateTo'])) $dateTo = null;
-											if(empty($type)) $type = null;
-
-											$res = searchLog($pdo, $uid, $dateFrom, $dateTo, $type);
-										}else{
-											$res = getAllLogs($pdo, $uid);
-										}
+										$res = getAllLogs($pdo, $uid);
 
 										if(count($res) > 0) {
 											foreach($res as $r) {

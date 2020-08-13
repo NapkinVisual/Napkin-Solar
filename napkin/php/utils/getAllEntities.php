@@ -30,8 +30,7 @@ function getAllEntities($pdo, $uid) {
       E.entityid,
       E.name,
       E.description,
-      E.created_on,
-      E.data
+      E.created_on
     FROM
       \"User_Entity\" AS UE INNER JOIN
       \"Entity\" AS E

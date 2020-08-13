@@ -38,11 +38,6 @@
 	}else{
 		header('Location: /napkin');
 	}
-
-	$isAdmin = false;
-	if(isset($_GET['admin'])) {
-		$isAdmin = $_GET['admin'] == $uid;
-	}
 ?>
 
 
@@ -315,13 +310,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link <?php if(!$isAdmin) echo "active"; ?>" href="entities">
+							<a class="nav-link active" href="entities">
 								<span data-feather="folder"></span>
-								Entities <?php if(!$isAdmin) echo "<span class=\"sr-only\">(current)</span>"; ?>
+								Entities <span class="sr-only">(current)</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="stock">
+							<a class="nav-link" href="#">
 								<span data-feather="box"></span>
 								Stock
 							</a>
@@ -332,7 +327,7 @@
 
         	<ul class="nav flex-column mb-2">
           	<li class="nav-item">
-            	<a class="nav-link" href="account">
+            	<a class="nav-link" href="#">
               	<span data-feather="user"></span>
               	Account
             	</a>
@@ -352,14 +347,14 @@
 							if($user['type'] == 'admin') {
 								echo "
 									<li class=\"nav-item\">
-										<a class=\"nav-link\" href=\"admin\">
+										<a class=\"nav-link\" href=\"#\">
 											<span data-feather=\"user-check\"></span>
 											Administration
 										</a>
 									</li>
 
 									<li class=\"nav-item\">
-			            	<a class=\"nav-link\" href=\"settings\">
+			            	<a class=\"nav-link\" href=\"#\">
 			              	<span data-feather=\"settings\"></span>
 			              	Settings
 			            	</a>
@@ -390,24 +385,15 @@
     	<main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
       	<div class="row">
 					<div class="col d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	        	<h1 class="h2">
-							<?php if($isAdmin) echo "<span data-feather=\"user-check\" style=\"width: 1em; height: 1em; color: #007bff;\"></span>"; ?>
-							Entities
-						</h1>
+	        	<h1 class="h2">Entities</h1>
 
 	        	<div class="btn-toolbar mb-2 mb-md-0" role="toolbar">
-	          	<?php
-								if(!$isAdmin) {
-									echo "
-										<button type=\"button\" class=\"btn btn-sm btn-outline-primary\" data-toggle=\"modal\" data-target=\"#newEntityModal\">
-											<strong>New entity</strong>
-											<span data-feather=\"plus\"></span>
-										</button>
+							<button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#newEntityModal">
+								<strong>New entity</strong>
+								<span data-feather="plus"></span>
+							</button>
 
-										&nbsp;
-									";
-								}
-							?>
+							&nbsp;
 
 							<button type="button" class="btn btn-sm btn-outline-secondary" id="share">
 								<span data-feather="share"></span>
@@ -420,10 +406,6 @@
 					<div class="col">
 						<form class="form-inline" method="GET" action="">
 							<input type="hidden" name="op" value="search" />
-							<?php
-								if($isAdmin)
-									echo "<input type=\"hidden\" name=\"admin\" value=\"".$uid."\" />";
-							?>
 
 							<input type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="name" placeholder="Name" />
 
@@ -451,36 +433,7 @@
 								</thead>
 								<tbody id="entityTable">
 									<?php
-										$res = null;
-										$op = "";
-										//if(isset($_GET['op'])) $op = $_GET['op'];
-
-										if(false /*$op == "search"*/) {
-											$name = $_GET['name'];
-										  $dateFrom = $_GET['createdFrom'];
-										  $dateTo = $_GET['createdTo'];
-
-										  if(empty($_GET['name'])) $name = "_";
-										  if(empty($_GET['createdFrom'])) $dateFrom = null;
-										  if(empty($_GET['createdTo'])) $dateTo = null;
-
-										  $res = searchProject($pdo, $uid, $name, $dateFrom, $dateTo);
-									  }else{
-											if($isAdmin) {
-												$stmt = $pdo->prepare(
-											    "SELECT
-											      *
-											    FROM
-											      \"Entity\"
-											    ORDER BY
-											      created_on DESC"
-											  );
-											  $stmt->execute();
-											  $res = $stmt->fetchAll();
-											}
-
-											else $res = getAllEntities($pdo, $uid);
-										}
+										$res = getAllEntities($pdo, $uid);
 
 										if(count($res) > 0) {
 											foreach($res as $r) {

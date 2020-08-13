@@ -35,12 +35,6 @@ function getAllLogs($pdo, $uid) {
         SELECT entityid
         FROM \"User_Entity\"
         WHERE userid = :userid
-
-        UNION
-
-        SELECT S.stockid
-        FROM \"Stock\" AS S INNER JOIN \"User_Entity\" AS UE ON S.entityid = UE.entityid
-        WHERE UE.userid = :userid
       ) AS Sub INNER JOIN
       \"Log\" AS L
         ON Sub.entityid = L.entityid
