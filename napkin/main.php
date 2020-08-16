@@ -92,6 +92,30 @@
 </head>
 <body>
 
+	<!-- loading modal -->
+	<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-scrollable">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loadingModalLabel">Loading...</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+
+					<div class="spinner-border text-primary" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="main">
 			<img src="assets/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="Napkin logo" />

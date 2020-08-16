@@ -30,6 +30,7 @@ include_once "utils/security.php";
 include_once "utils/createEntity.php";
 include_once "utils/getEntity.php";
 include_once "utils/getAllEntities.php";
+include_once "utils/saveEntity.php";
 include_once "utils/updateEntity.php";
 include_once "utils/deleteEntity.php";
 
@@ -73,6 +74,7 @@ if($op == "get"
 || $op == "get_all"
 || $op == "get_data"
 || $op == "share"
+|| $op == "save"
 || $op == "update"
 || $op == "delete")
 {
@@ -93,6 +95,7 @@ if($op == "get"
   }
   else
   if($op == "share"
+  || $op == "save"
   || $op == "update"
   || $op == "delete")
   {
@@ -175,6 +178,24 @@ if($op == "get"
 
     if($res) http_response_code(200);
     else http_response_code(500);
+
+  }
+  else
+  if($op == "save")
+  {
+
+    if(!isset($_POST['data'])) {
+      http_response_code(422);
+      exit;
+    }
+
+    $eid = $_POST['eid'];
+    $data = $_POST['data'];
+
+    $res = saveEntity($pdo, $eid, $data);
+
+    if($res) http_response_code(200);
+    else http_response_code(500);;
 
   }
   else

@@ -24,6 +24,10 @@ window.addEventListener("load", function() {
   feather.replace();
   init();
 
+  let exportMapData;
+  let params = getParams(window.location.href);
+  let entityid = params.eid;
+
 
   /* MapBox token */
   const MAPBOX_TOKEN = "pk.eyJ1IjoiYW5kcmVhc2F0YWthbiIsImEiOiJjazlndzM1cmUwMnl5M21tZjQ3dXpzeHJnIn0.oE5zp040ZzJj5QgCDznweg";
@@ -51,7 +55,7 @@ window.addEventListener("load", function() {
         },
         uiState: {
           currentModal: null,
-          //readOnly: true
+          readOnly: true
         }
       })
     });
@@ -138,7 +142,46 @@ window.addEventListener("load", function() {
    */
   (function customize(keplerGl, store) {
     //store.dispatch(keplerGl.toggleSplitMap());
-    //let exportMapData = function() { return KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map); };
+    exportMapData = function() { return KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map); };
+
+    if(!entityid) return;
+
+    $("#loadingModal").modal("show");
+
+    $.ajax({
+      type: "GET",
+      url: "php/entity",
+      data: {
+        "op": "get_data",
+        "eid": entityid
+      },
+      dataType: "json",
+      success: function(result, status, xhr) {
+        let data = result;
+        data = JSON.parse(data);
+
+        const loadedData = keplerGl.KeplerGlSchema.load(
+          data.datasets,
+          data.config
+        );
+
+        store.dispatch(keplerGl.addDataToMap({
+          datasets: loadedData.datasets,
+          config: loadedData.config,
+          options: {
+            centerMap: false
+          }
+        }));
+
+        setTimeout(function() {
+          $("#loadingModal").modal("hide");
+        }, 600);
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.status);
+        console.log(error);
+      }
+    });
 
     /*store.dispatch(keplerGl.addDataToMap({
       datasets: loadedData.datasets,
@@ -148,6 +191,41 @@ window.addEventListener("load", function() {
       }
     }));*/
   }(KeplerGl, store));
+
+
+  /*window.__saveMap = function() {
+    let data = exportMapData();
+
+    for(let d of data.datasets) {
+      d.info = {
+        id: d.data.id,
+        label: d.data.label
+      };
+
+      d.data = {
+        fields: d.data.fields,
+        allData: d.data.allData
+      };
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "php/entity",
+      data: {
+        "op": "save",
+        "eid": entityid,
+        "data": JSON.stringify(data)
+      },
+      //dataType: "json",
+      success: function(result, status, xhr) {
+        console.log(status);
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.status);
+        console.log(error);
+      }
+    });
+  };*/
 });
 
 
@@ -187,4 +265,22 @@ function calcHeight(height) {
     return height - 129;
 
   return height - 129;
+}
+
+
+
+function getParams(url) {
+	let params = {},
+      parser = document.createElement('a');
+	parser.href = url;
+
+	let query = parser.search.substring(1);
+	let vars = query.split('&');
+
+	for(let i = 0; i < vars.length; i++) {
+		let pair = vars[i].split('=');
+		params[pair[0]] = decodeURIComponent(pair[1]);
+	}
+
+	return params;
 }
