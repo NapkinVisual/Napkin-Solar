@@ -97,7 +97,7 @@
 
 
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="main">
+		<a class="navbar-brand col-md-1 mr-0 px-3" href="main">
 			<img src="assets/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="Napkin logo" />
 		</a>
 
@@ -116,42 +116,42 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+			<nav id="sidebarMenu" class="col d-md-block bg-light sidebar collapse">
 				<div class="sidebar-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item">
 							<a class="nav-link" href="main">
 								<span data-feather="map"></span>
-								Home
+								<span class="d-md-none"> Home </span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="entities">
 								<span data-feather="folder"></span>
-								Entities
+								<span class="d-md-none"> Entities </span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">
 								<span data-feather="box"></span>
-								Stock
+								<span class="d-md-none"> Stock </span>
 							</a>
 						</li>
 					</ul>
 
 					<br />
 
-        	<ul class="nav flex-column mb-2">
+					<ul class="nav flex-column mb-2">
           	<li class="nav-item">
             	<a class="nav-link" href="#">
               	<span data-feather="user"></span>
-              	Account
+              	<span class="d-md-none"> Account </span>
             	</a>
           	</li>
           	<li class="nav-item">
             	<a class="nav-link" href="log">
               	<span data-feather="file-text"></span>
-              	Logs
+								<span class="d-md-none"> Logs </span>
             	</a>
           	</li>
         	</ul>
@@ -165,14 +165,14 @@
 									<li class=\"nav-item\">
 										<a class=\"nav-link\" href=\"#\">
 											<span data-feather=\"user-check\"></span>
-											Administration
+											<span class=\"d-md-none\"> Administration </span>
 										</a>
 									</li>
 
 									<li class=\"nav-item\">
 			            	<a class=\"nav-link\" href=\"#\">
 			              	<span data-feather=\"settings\"></span>
-			              	Settings
+			              	<span class=\"d-md-none\"> Settings </span>
 			            	</a>
 			          	</li>
 								";
@@ -181,14 +181,14 @@
           	<li class="nav-item">
             	<a class="nav-link active" href="about">
               	<span data-feather="info"></span>
-              	About <span class="sr-only">(current)</span>
+								<span class="d-md-none"> About <span class="sr-only">(current)</span> </span>
             	</a>
           	</li>
         	</ul>
 
 					<br />
 
-					<p class="text-muted text-center">
+					<p class="text-muted text-center d-md-none">
 						<small>
 							© <span id="ccYear">2020</span>
 							<a href="https://napkingis.no" target="_blank">napkingis.no</a>.
@@ -198,7 +198,7 @@
       	</div>
     	</nav>
 
-    	<main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
+    	<main role="main" class="col" id="mainPanel">
       	<div class="row">
 					<div class="col d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	        	<h1 class="h2">About Napkin Visual</h1>
