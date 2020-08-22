@@ -29,3 +29,4 @@ build
 /dev/yarn-error.log*
 
 **/raw_data/*
+**/raw_*
