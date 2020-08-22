@@ -20,26 +20,6 @@
 *****************************************************************************©*/
 -->
 
-<?php
-	//error_reporting(E_ALL); ini_set('display_errors',1); ini_set('error_reporting', E_ALL); ini_set('display_startup_errors',1); error_reporting(-1);
-
-	session_start();
-
-	include "php/utils/init_db.php";
-	include_once "php/utils/getUser.php";
-
-	$uid = null;
-	$user = null;
-
-	if(!empty($_SESSION['uid'])) {
-		$uid = $_SESSION['uid'];
-		$user = getUser($pdo, $uid);
-	}else{
-		header('Location: /napkin');
-	}
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +96,7 @@
 
 
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-1 mr-0 px-3" href="main">
+		<a class="navbar-brand col-md-1 mr-0 px-3" href="#">
 			<img src="assets/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="Napkin logo" />
 		</a>
 
@@ -139,7 +119,7 @@
 				<div class="sidebar-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" href="main">
+							<a class="nav-link active" href="#">
 								<span data-feather="map"></span>
 								<span class="d-md-none"> Home <span class="sr-only">(current)</span> </span>
 							</a>
@@ -184,25 +164,19 @@
 					<br />
 
 					<ul class="nav flex-column mb-2">
-						<?php
-							if($user['type'] == 'admin') {
-								echo "
-									<li class=\"nav-item\">
-										<a class=\"nav-link\" href=\"#\">
-											<span data-feather=\"user-check\"></span>
-											<span class=\"d-md-none\"> Administration </span>
-										</a>
-									</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<span data-feather="user-check"></span>
+								<span class="d-md-none"> Administration </span>
+							</a>
+						</li>
 
-									<li class=\"nav-item\">
-			            	<a class=\"nav-link\" href=\"#\">
-			              	<span data-feather=\"settings\"></span>
-			              	<span class=\"d-md-none\"> Settings </span>
-			            	</a>
-			          	</li>
-								";
-							}
-						?>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<span data-feather="settings"></span>
+								<span class="d-md-none"> Settings </span>
+							</a>
+						</li>
           	<li class="nav-item">
             	<a class="nav-link" href="#">
               	<span data-feather="info"></span>
@@ -388,48 +362,13 @@
 	    //store.dispatch(keplerGl.toggleSplitMap());
 	    // let exportMapData = function() { return KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map); };
 
-			<?php
-				$eid = null;
-
-				if(isset($_GET['eid'])) $eid = $_GET['eid'];
-				else $eid = "d1c7b8ff-3a11-4834-86ee-81e21cf59ff5";
-
-				$stmt = $pdo->prepare("SELECT data->'config' AS config, data->'datasets' AS datasets FROM \"Entity\" WHERE entityid = ?");
-				$stmt->execute([$eid]);
-				$res = $stmt->fetch();
-
-				echo "
-					const datasets = ".$res['datasets'].";
-					const config = ".$res['config'].";
-
-					const loadedData = keplerGl.KeplerGlSchema.load(
-						datasets,
-						config
-					);
-
-					store.dispatch(keplerGl.addDataToMap({
-						datasets: loadedData.datasets,
-						config: loadedData.config,
-						options: {
-							centerMap: false
-						}
-					}));
-				";
-			?>
-
-	    /*store.dispatch(keplerGl.addDataToMap({
-	      datasets: loadedData.datasets,
-	      config: loadedData.config,
-	      options: {
-	        centerMap: false
-	      }
-	    }));*/
+			/*[__REPLACE__]*/
 	  }(KeplerGl, store));
   </script>
 
 	<script src="js/index.js"></script>
 
-	<script src="js/main.php.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 </html>
