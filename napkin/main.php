@@ -27,7 +27,6 @@
 
 	include "php/utils/init_db.php";
 	include_once "php/utils/getUser.php";
-	include_once "php/utils/getAllLogs.php";
 
 	$uid = null;
 	$user = null;
@@ -146,7 +145,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="entities">
+							<a class="nav-link" href="#">
 								<span data-feather="folder"></span>
 								<span class="d-md-none"> Entities </span>
 							</a>
@@ -175,7 +174,7 @@
             	</a>
           	</li>
           	<li class="nav-item">
-            	<a class="nav-link" href="log">
+            	<a class="nav-link" href="#">
               	<span data-feather="file-text"></span>
               	<span class="d-md-none"> Logs </span>
             	</a>
@@ -205,7 +204,7 @@
 							}
 						?>
           	<li class="nav-item">
-            	<a class="nav-link" href="about">
+            	<a class="nav-link" href="#">
               	<span data-feather="info"></span>
               	<span class="d-md-none"> About </span>
             	</a>

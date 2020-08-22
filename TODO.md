@@ -1,5 +1,4 @@
 ## TODO
-* Add logging to all PHP scripts
 * Build new kepler.gl umd where it says *export* in side-panel header, instead of *share*
 
 
