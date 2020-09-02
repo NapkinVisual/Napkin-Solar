@@ -44,42 +44,13 @@ def efficiency(prod):
 with open('panels.geojson', 'r') as infile, \
      open('raw_data/out.geojson', 'w') as outfile:
     data = json.load(infile)
-    features = [
-        {
-          'type': 'Feature',
-          'properties': {
-            'timestamp': '2020-08-03 05:00:00 +00:00',
-            'production': 0,
-            'efficiency': 0
-          },
-          'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
-              [ [35.15161380171775, 48.60864887260426], [35.15161380171775, 48.60864887260427], [35.15161380171776, 48.60864887260427], [35.15161380171776, 48.60864887260426], [35.15161380171775, 48.60864887260426] ]
-            ]
-          }
-        },
-        {
-          'type': 'Feature',
-          'properties': {
-            'timestamp': '2020-08-03 05:00:00 +00:00',
-            'production': 150,
-            'efficiency': 1
-          },
-          'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
-              [ [35.15161380171775, 48.60864887260426], [35.15161380171775, 48.60864887260427], [35.15161380171776, 48.60864887260427], [35.15161380171776, 48.60864887260426], [35.15161380171775, 48.60864887260426] ]
-            ]
-          }
-        }
-    ]
+    features = []
 
     for f in data['features']:
 
         for t in lrange(5, 21):
-            for _s in lrange(0, 20):
-                s = _s * 3
+            for _s in lrange(0, 15):
+                s = _s * 4
                 h = f'0{t}' if len(str(t)) < 2 else f'{t}'
                 m = f'0{s}' if len(str(s)) < 2 else f'{s}'
 

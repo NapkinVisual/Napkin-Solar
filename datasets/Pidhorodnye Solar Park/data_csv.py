@@ -32,7 +32,7 @@ F = lambda t, a: math.floor( a * math.sin( (math.pi / 14) * (t - 6) ) )
 
 def production(t):
     if(t > 6 and t < 20):
-        return random.randint( F(t, 140), F(t, 150) )
+        return random.randint( F(t, 148), F(t, 150) )
     else:
         return 0
 
@@ -64,5 +64,5 @@ with open('panels.csv', mode='r') as infile, \
 
                 csv_writer.writerow([r[0], r[1], prod, eff, timestamp])
 
-    csv_writer.writerow([0, 0, 0, 0, '2020-08-03 05:00:00 +00:00'])
-    csv_writer.writerow([0, 0, 0, 0, '2020-08-03 05:00:00 +00:00'])
+    #csv_writer.writerow([0, 0, 0, 0, '2020-08-03 05:00:00 +00:00'])
+    #csv_writer.writerow([0, 0, 0, 0, '2020-08-03 05:00:00 +00:00'])
